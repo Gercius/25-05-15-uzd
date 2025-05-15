@@ -15,6 +15,13 @@ const mealSchema = new mongoose.Schema(
             type: String,
             default: "https://placehold.co/400x400?text=meal",
         },
+        menus: [
+            {
+                type: mongoose.Schema.ObjectId,
+                ref: "Menu",
+                required: true,
+            },
+        ],
     },
     {
         timestamps: true,

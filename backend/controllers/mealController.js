@@ -3,13 +3,13 @@ import Meal from "../models/mealModel.js";
 
 export const createMeal = async (req, res, next) => {
     try {
-        const { name, description, image_url } = req.body;
+        const { name, description, image_url, menus } = req.body;
         if (!name || !description) throw new AppError("Name and description are required", 400);
 
         const existingMeal = await Meal.findOne({ name });
         if (existingMeal) throw new AppError("Meal already exists", 409);
 
-        const newMeal = await Meal.create([{ name, description, image_url }]);
+        const newMeal = await Meal.create([{ name, description, image_url, menus }]);
 
         res.status(201).json({
             success: true,
@@ -53,11 +53,11 @@ export const getMealById = async (req, res, next) => {
 export const updateMeal = async (req, res, next) => {
     try {
         const { id } = req.params;
-        const { name, description, image_url } = req.body;
+        const { name, description, image_url, menus } = req.body;
 
         const updated = await Meal.findByIdAndUpdate(
             id,
-            { name, description, image_url },
+            { name, description, image_url, menus },
             { new: true, runValidators: true }
         );
 
