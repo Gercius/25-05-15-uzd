@@ -7,25 +7,31 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import FoodProvider from "./pages/FoodProvider";
 import { FoodProviderProvider } from "./context/FoodProviderContext";
+import { MenuProvider } from "./context/MenuContext";
+import { MealProvider } from "./context/MealContext";
 
 function App() {
     return (
         <FoodProviderProvider>
-            <Router>
-                <div className="app-container container">
-                    <Header />
-                    <main className="content">
-                        <Routes>
-                            <Route path="/" element={<HomePage />} />
-                            <Route path="/*" element={<NotFound />} />
-                            <Route path="/login" element={<Login />} />
-                            <Route path="/register" element={<Register />} />
-                            <Route path="/dashboard" element={<Dashboard />} />
-                            <Route path="/provider/:id" element={<FoodProvider />} />
-                        </Routes>
-                    </main>
-                </div>
-            </Router>
+            <MenuProvider>
+                <MealProvider>
+                    <Router>
+                        <div className="app-container container">
+                            <Header />
+                            <main className="content">
+                                <Routes>
+                                    <Route path="/" element={<HomePage />} />
+                                    <Route path="/*" element={<NotFound />} />
+                                    <Route path="/login" element={<Login />} />
+                                    <Route path="/register" element={<Register />} />
+                                    <Route path="/dashboard" element={<Dashboard />} />
+                                    <Route path="/provider/:id" element={<FoodProvider />} />
+                                </Routes>
+                            </main>
+                        </div>
+                    </Router>
+                </MealProvider>
+            </MenuProvider>
         </FoodProviderProvider>
     );
 }

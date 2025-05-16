@@ -32,10 +32,6 @@ const FoodProviders = () => {
                             {provider.name}
                         </Link>
                     ))}
-
-                    <Link className="">Provider</Link>
-                    <Link className="">Provider</Link>
-                    <Link className="">Provider</Link>
                 </ul>
             </section>
         </div>
