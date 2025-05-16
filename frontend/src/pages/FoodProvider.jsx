@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Menu from "../components/Menu";
 import { useFoodProvider } from "../context/FoodProviderContext";
+import { MenuProvider } from "../context/MenuContext";
 
 const FoodProvider = () => {
     const { id } = useParams();
@@ -25,7 +26,9 @@ const FoodProvider = () => {
     return (
         <div>
             <h1>{foodProvider.name} menu</h1>
-            <Menu providerId={id} />
+            <MenuProvider>
+                <Menu providerId={id} />
+            </MenuProvider>
         </div>
     );
 };
