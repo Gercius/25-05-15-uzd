@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getFoodProviderById } from "../services/FoodProviderServices";
+import Menu from "../components/Menu";
+import { useFoodProvider } from "../context/FoodProviderContext";
 
 const FoodProvider = () => {
     const { id } = useParams();
+    const { getFoodProviderById } = useFoodProvider();
 
     const [foodProvider, setFoodProvider] = useState({});
 
@@ -23,7 +25,7 @@ const FoodProvider = () => {
     return (
         <div>
             <h1>{foodProvider.name} menu</h1>
-            {/* menu  */}
+            <Menu providerId={id} />
         </div>
     );
 };

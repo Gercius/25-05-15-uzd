@@ -21,10 +21,10 @@ export const FoodProviderProvider = ({ children }) => {
     );
 };
 
-export const useFoodProviders = () => {
+export const useFoodProvider = () => {
     const context = useContext(FoodProviderContext);
 
-    if (!context) throw new Error("useFoodProviders turi buti naudojamas su FoodProvider");
+    if (!context) throw new Error("useFoodProvider turi buti naudojamas su FoodProvider");
 
     return context;
 };
