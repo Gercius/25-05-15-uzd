@@ -50,8 +50,6 @@ export const getMenuById = async (req, res, next) => {
 };
 
 export const getMenuByFoodProvider = async (req, res, next) => {
-    console.log("getMenuByFoodProvider");
-
     try {
         const { providerId } = req.params;
 

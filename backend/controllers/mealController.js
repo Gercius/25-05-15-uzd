@@ -50,6 +50,25 @@ export const getMealById = async (req, res, next) => {
     }
 };
 
+export const getMealsByMenuId = async (req, res, next) => {
+    try {
+        const { menuId } = req.params;
+
+        const meals = await Meal.find({ menus: menuId });
+
+        if (!meals || meals.length === 0) {
+            throw new AppError("No meals found for this menu", 404);
+        }
+
+        res.status(200).json({
+            success: true,
+            data: meals,
+        });
+    } catch (error) {
+        next(error);
+    }
+};
+
 export const updateMeal = async (req, res, next) => {
     try {
         const { id } = req.params;
