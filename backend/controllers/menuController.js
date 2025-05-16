@@ -33,9 +33,30 @@ export const getAllMenus = async (req, res, next) => {
 };
 
 export const getMenuById = async (req, res, next) => {
+    console.log("getMenuById");
+
     try {
         const { id } = req.params;
         const menu = await Menu.findById(id);
+        if (!menu) throw new AppError("Menu not found", 404);
+
+        res.status(200).json({
+            success: true,
+            data: menu,
+        });
+    } catch (error) {
+        next(error);
+    }
+};
+
+export const getMenuByFoodProvider = async (req, res, next) => {
+    console.log("getMenuByFoodProvider");
+
+    try {
+        const { providerId } = req.params;
+
+        const menu = await Menu.findOne({ food_provider: providerId });
+
         if (!menu) throw new AppError("Menu not found", 404);
 
         res.status(200).json({
